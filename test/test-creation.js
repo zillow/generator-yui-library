@@ -1,7 +1,8 @@
-/*global describe, beforeEach, it*/
+/*global describe, afterEach, beforeEach, it*/
 'use strict';
 
 var path    = require('path');
+var rimraf  = require('rimraf');
 var helpers = require('yeoman-generator').test;
 
 describe('yui generator', function () {
@@ -16,6 +17,10 @@ describe('yui generator', function () {
             ]);
             done();
         }.bind(this));
+    });
+
+    afterEach(function (done) {
+        rimraf(path.join(__dirname, 'temp'), done);
     });
 
     it('creates expected files', function (done) {
