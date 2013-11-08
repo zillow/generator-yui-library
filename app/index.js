@@ -45,5 +45,6 @@ YuiGenerator.prototype.app = function app() {
 
 YuiGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
+    this.copy('gitignore', '.gitignore');
     this.copy('jshintrc', '.jshintrc');
 };
