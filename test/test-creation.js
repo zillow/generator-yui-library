@@ -25,9 +25,13 @@ describe('yui generator', function () {
 
     it('creates expected files', function (done) {
         var expected = [
-            // add files you expect to exist here.
+            'BUILD.md',
+            'README.md',
+            'Gruntfile.js',
+            '.editorconfig',
+            '.gitignore',
             '.jshintrc',
-            '.editorconfig'
+            '.yeti.json'
         ];
 
         helpers.mockPrompt(this.app, {
