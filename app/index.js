@@ -42,9 +42,9 @@ YuiGenerator.prototype.app = function app() {
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
 
-    this.copy('_BUILD.md', 'BUILD.md');
-    this.copy('_README.md', 'README.md');
-    this.copy('_Gruntfile.js', 'Gruntfile.js');
+    this.template('_BUILD.md', 'BUILD.md');
+    this.template('_README.md', 'README.md');
+    this.template('_Gruntfile.js', 'Gruntfile.js');
 };
 
 YuiGenerator.prototype.projectfiles = function projectfiles() {
