@@ -3,7 +3,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var cli = grunt.cli;
-<% if (yui_release) { %>
+<% if (yuiRelease) { %>
     cli.optlist['release-version'] = {
         info: 'Release Version',
         type: String
@@ -19,13 +19,13 @@ module.exports = function (grunt) {
         type: Boolean
     };
 
-    grunt.initConfig({
+    grunt.config.init({
         pkg: grunt.file.readJSON('package.json'),
         version: grunt.option('release-version'),
         build: grunt.option('release-build'),
-        buildtag: '<%= project_title || project_name %> <%%= version %> (build <%%= build %>)',
-        copyright: 'Copyright <%%= grunt.template.today("yyyy") %> <%= copyright_owner %> All rights reserved.',
-        license: 'Licensed <%%= _.pluck(pkg.licenses, "type").join(", ") %>'<% if (yui_release) { %>,
+        buildtag: '<%= projectTitle || projectName %> <%%= version %> (build <%%= build %>)',
+        copyright: 'Copyright <%%= grunt.template.today("yyyy") %> <%= copyrightOwner %> All rights reserved.',
+        license: 'Licensed <%%= _.pluck(pkg.licenses, "type").join(", ") %>'<% if (yuiRelease) { %>,
         compress: {
             dist: {
                 files: [
@@ -84,15 +84,15 @@ module.exports = function (grunt) {
                     }
                 }
             }
-        }<% } %><% if (clean_build) { %>,
+        }<% } %><% if (cleanBuild) { %>,
         clean: {
             files: ['build']
         }<% } %>
     });
-<% if (clean_build) { %>
-    grunt.loadNpmTasks('grunt-contrib-clean');<% } %><% if (yui_release) { %>
-    grunt.loadNpmTasks('grunt-contrib-compress');<% } %>
-    grunt.loadNpmTasks('grunt-yui-contrib');
+
+    grunt.loadNpmTasks('grunt-yui-contrib');<% if (yuiRelease) { %>
+    grunt.loadNpmTasks('grunt-contrib-compress');<% } %><% if (cleanBuild) { %>
+    grunt.loadNpmTasks('grunt-contrib-clean');<% } %>
 
     grunt.registerTask('default', ['boot']);
 };

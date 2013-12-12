@@ -1,4 +1,4 @@
-{%= project_title || project_name %}
+<%= projectTitle || projectName %>
 ========
 
-{%= project_description %}
+<%= projectDescription %>

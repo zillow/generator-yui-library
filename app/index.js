@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 
 
-var YuiGenerator = module.exports = function YuiGenerator(args, options, config) {
+var YuiGenerator = module.exports = function YuiGenerator(args, options) {
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {

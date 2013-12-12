@@ -21,10 +21,10 @@ Shortcuts
  * `grunt npm` Runs the npm build.
  * `grunt test` Runs a `yogi test` on the entire lib.
  * `grunt test-cli` Runs only the CLI tests.
- * `grunt travis` Runs a custom build/test just for Travis CI.{% if (yui_release) { %}
- * `grunt release` Runs a release build (more below){% } %}
+ * `grunt travis` Runs a custom build/test just for Travis CI.<% if (yuiRelease) { %>
+ * `grunt release` Runs a release build (more below)<% } %>
  * `grunt`, `grunt help`, `grunt yui` Will display build help.
-{% if (yui_release) { %}
+<% if (yuiRelease) { %>
 Release Build
 -------------
 
@@ -45,4 +45,4 @@ The release build consists of the following artifacts:
  * `cdn release zip` Contains the build dir stamped for a CDN release (CSS files processed for relative paths)
  * `ssl cdn release zip` Same as above only tweaked for SSL access.
  * `npm package` The npm package designed for a simple `npm publish`
-{% } %}
+<% } %>
