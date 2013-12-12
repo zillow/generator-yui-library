@@ -35,7 +35,11 @@ describe('yui generator', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            'someOption': true
+            'projectTitle': 'Foo',
+            'projectDescription': 'Foo stuff',
+            'cleanBuild': false,
+            'yuiRelease': true,
+            'copyrightOwner': 'Bar'
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {

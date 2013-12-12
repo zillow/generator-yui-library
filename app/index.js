@@ -22,15 +22,61 @@ YuiGenerator.prototype.askFor = function askFor() {
     // have Yeoman greet the user.
     console.log(this.yeoman);
 
-    var prompts = [{
-        type: 'confirm',
-        name: 'someOption',
-        message: 'Would you like to enable this option?',
-        default: true
-    }];
+    var prompts = [
+        {
+            name: 'projectName',
+            message: 'Project name',
+            default: path.basename(process.cwd())
+        },
+        {
+            name: 'projectTitle',
+            message: 'Project title (if different)',
+            default: function (props) {
+                return props.projectName;
+            }
+        },
+        {
+            name: 'projectDescription',
+            message: 'Project description',
+            default: 'The best YUI-based project ever.'
+        },
+        {
+            type: 'confirm',
+            name: 'cleanBuild',
+            message: 'Version build directory?',
+            default: true,
+            filter: function (input) {
+                // inverts answer
+                return !input;
+            }
+        },
+        {
+            type: 'confirm',
+            name: 'yuiRelease',
+            message: 'Support YUI release tasks?',
+            default: true
+        },
+        {
+            name: 'copyrightOwner',
+            message: 'Copyright owner',
+            default: 'Yahoo! Inc.'
+        },
+        {
+            name: 'yuiVersion',
+            message: 'YUI version',
+            default: '3.13.0'
+        }
+    ];
 
     this.prompt(prompts, function (props) {
-        this.someOption = props.someOption;
+        this.projectName = props.projectName;
+        this.projectTitle = props.projectTitle;
+        this.projectDescription = props.projectDescription;
+
+        this.cleanBuild = props.cleanBuild;
+        this.yuiRelease = props.yuiRelease;
+        this.copyrightOwner = props.copyrightOwner;
+        this.yuiVersion = props.yuiVersion;
 
         cb();
     }.bind(this));
