@@ -1,15 +1,9 @@
-/*global describe, after, afterEach, before, beforeEach, it*/
+/*global describe, beforeEach, it */
 'use strict';
-
-var path    = require('path');
-var rimraf  = require('rimraf');
+var path = require('path');
 var helpers = require('yeoman-generator').test;
 
 describe('yui generator', function () {
-    before(function (done) {
-        rimraf(path.join(__dirname, 'temp'), done);
-    });
-
     beforeEach(function (done) {
         helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
             if (err) {
@@ -43,7 +37,7 @@ describe('yui generator', function () {
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
-            helpers.assertFiles(expected);
+            helpers.assertFile(expected);
             done();
         });
     });

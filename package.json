@@ -1,42 +1,36 @@
 {
   "name": "generator-yui",
   "version": "0.0.0",
-  "description": "A generator for Yeoman",
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "homepage": "https://github.com/evocateur/generator-yui",
-  "bugs": "https://github.com/evocateur/generator-yui/issues",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "evocateur/generator-yui",
   "author": {
     "name": "Daniel Stockman",
     "email": "daniel.stockman@gmail.com",
     "url": "https://github.com/evocateur"
   },
-  "main": "app/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/evocateur/generator-yui.git"
+  "engines": {
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "mocha"
   },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
   "dependencies": {
-    "yeoman-generator": "~0.13.0"
+    "yeoman-generator": "~0.16.0",
+    "chalk": "~0.4.0",
+    "yosay": "^0.1.0"
   },
   "devDependencies": {
-    "mocha": "~1.12.0",
-    "rimraf": "~2.2.2"
+    "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0-rc.1"
-  },
-  "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
-  },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ]
+    "yo": ">=1.0.0"
+  }
 }

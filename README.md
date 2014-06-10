@@ -1,6 +1,6 @@
 # generator-yui [![Build Status](https://secure.travis-ci.org/evocateur/generator-yui.png?branch=master)](https://travis-ci.org/evocateur/generator-yui)
 
-A generator for [Yeoman](http://yeoman.io).
+> [Yeoman](http://yeoman.io) generator
 
 
 ## Getting Started
@@ -15,7 +15,7 @@ Basically, he wears a top hat, lives in your computer, and waits for you to tell
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
-```
+```bash
 $ npm install -g yo
 ```
 
@@ -25,13 +25,13 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 
 To install generator-yui from npm, run:
 
-```
+```bash
 $ npm install -g generator-yui
 ```
 
 Finally, initiate the generator:
 
-```
+```bash
 $ yo yui
 ```
 
@@ -44,4 +44,4 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 
 ## License
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+MIT
