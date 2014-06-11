@@ -10,8 +10,6 @@ var YuiGenerator = yeoman.generators.Base.extend({
     init: function () {
         this.pkg = require('../package.json');
 
-        this._gitConfigCache = {};
-
         this.on('end', function () {
             if (!this.options['skip-install']) {
                 this.installDependencies();
@@ -38,7 +36,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
     // https://github.com/yeoman/generator/blob/master/lib/actions/user.js
     _defaultGitConfig: function (prop) {
         var key = process.cwd() + ':' + prop,
-            val = this._gitConfigCache[key];
+            val = this.constructor.gitConfigCache[key];
 
         if (val) {
             return val;
@@ -46,7 +44,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
 
         if (sh.which('git')) {
             val = sh.exec('git config --get ' + prop, { silent: true }).output.trim();
-            this._gitConfigCache[key] = val;
+            this.constructor.gitConfigCache[key] = val;
         }
 
         return val;
@@ -153,6 +151,16 @@ var YuiGenerator = yeoman.generators.Base.extend({
         this.copy('jshintrc', '.jshintrc');
         this.copy('yeti.json', '.yeti.json');
     }
+}, {
+    /**
+    A cache of `git config` return values, shared by all instances.
+
+    @attribute gitConfigCache
+    @type {Object}
+    @default {}
+    @static
+    **/
+    gitConfigCache: {}
 });
 
 module.exports = YuiGenerator;
