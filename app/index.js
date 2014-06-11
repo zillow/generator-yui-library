@@ -40,7 +40,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
                 name: 'projectAuthor',
                 message: 'Project author',
                 default: function () {
-                    var name  = git.name || git.username, // generator v0.17.0 uses 'name'
+                    var name  = git.name,
                         email = git.email,
                         author = 'Rockstar Developer <rockstar@mycompany.com>';
                     if (name) {
