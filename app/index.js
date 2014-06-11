@@ -36,9 +36,24 @@ var YuiGenerator = yeoman.generators.Base.extend({
                 }
             },
             {
+                name: 'projectAuthor',
+                message: 'Project author',
+                default: 'Rockstar Developer <rockstar@mycompany.com>'
+            },
+            {
                 name: 'projectDescription',
                 message: 'Project description',
                 default: 'The best YUI-based project ever.'
+            },
+            {
+                name: 'projectRepository',
+                message: 'Project repository URL',
+                default: ''
+            },
+            {
+                name: 'projectVersion',
+                message: 'Project version',
+                default: '0.0.0'
             },
             {
                 type: 'confirm',
@@ -71,7 +86,10 @@ var YuiGenerator = yeoman.generators.Base.extend({
         this.prompt(prompts, function (props) {
             this.projectName = props.projectName;
             this.projectTitle = props.projectTitle;
+            this.projectAuthor = props.projectAuthor;
             this.projectDescription = props.projectDescription;
+            this.projectRepository = props.projectRepository;
+            this.projectVersion = props.projectVersion;
 
             this.cleanBuild = props.cleanBuild;
             this.yuiRelease = props.yuiRelease;
@@ -85,8 +103,8 @@ var YuiGenerator = yeoman.generators.Base.extend({
     app: function () {
         this.mkdir('src');
 
-        this.copy('_package.json', 'package.json');
-        this.copy('_bower.json', 'bower.json');
+        this.template('_package.json', 'package.json');
+        this.template('_bower.json', 'bower.json');
 
         this.template('_BUILD.md', 'BUILD.md');
         this.template('_README.md', 'README.md');
