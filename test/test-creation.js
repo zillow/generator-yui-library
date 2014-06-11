@@ -1,21 +1,11 @@
-/*global describe, beforeEach, it */
+/*global describe, it */
 'use strict';
 var path = require('path');
-var helpers = require('yeoman-generator').test;
+var yeoman = require('yeoman-generator');
 
 describe('yui generator', function () {
-    beforeEach(function (done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-            if (err) {
-                return done(err);
-            }
-
-            this.app = helpers.createGenerator('yui:app', [
-                '../../app'
-            ]);
-            done();
-        }.bind(this));
-    });
+    var TMP_DIR = path.join(__dirname, 'temp');
+    var APP_DIR = path.join(__dirname, '../app');
 
     it('creates expected files', function (done) {
         var expected = [
@@ -28,17 +18,11 @@ describe('yui generator', function () {
             '.yeti.json'
         ];
 
-        helpers.mockPrompt(this.app, {
-            'projectTitle': 'Foo',
-            'projectDescription': 'Foo stuff',
-            'cleanBuild': false,
-            'yuiRelease': true,
-            'copyrightOwner': 'Bar'
-        });
-        this.app.options['skip-install'] = true;
-        this.app.run({}, function () {
-            helpers.assertFile(expected);
-            done();
-        });
+        yeoman.test.run(APP_DIR)
+            .inDir(TMP_DIR)
+            .onEnd(function () {
+                yeoman.assert.file(expected);
+                done();
+            });
     });
 });
