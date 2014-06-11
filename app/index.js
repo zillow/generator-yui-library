@@ -16,9 +16,23 @@ var YuiGenerator = yeoman.generators.Base.extend({
         });
     },
 
+    _defaultAuthor: function () {
+        var name  = this.user.git.name,
+            email = this.user.git.email,
+            author = 'Rockstar Developer <rockstar@mycompany.com>';
+
+        if (name) {
+            author = name;
+            if (email) {
+                author += (' <' + email + '>');
+            }
+        }
+
+        return author;
+    },
+
     askFor: function () {
         var done = this.async();
-        var git = this.user.git;
 
         // Have Yeoman greet the user.
         this.log(yosay('Welcome to the marvelous YUI generator!'));
@@ -39,18 +53,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
             {
                 name: 'projectAuthor',
                 message: 'Project author',
-                default: function () {
-                    var name  = git.name,
-                        email = git.email,
-                        author = 'Rockstar Developer <rockstar@mycompany.com>';
-                    if (name) {
-                        author = name;
-                        if (email) {
-                            author += (' <' + email + '>');
-                        }
-                    }
-                    return author;
-                }
+                default: this._defaultAuthor.bind(this)
             },
             {
                 name: 'projectDescription',
