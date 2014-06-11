@@ -34,8 +34,8 @@ var YuiGenerator = yeoman.generators.Base.extend({
 
     // mostly a copy of the getters in
     // https://github.com/yeoman/generator/blob/master/lib/actions/user.js
-    _defaultGitConfig: function (prop) {
-        var key = process.cwd() + ':' + prop,
+    _defaultGitConfig: function (query) {
+        var key = process.cwd() + ':' + query,
             val = this.constructor.gitConfigCache[key];
 
         if (val) {
@@ -43,7 +43,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
         }
 
         if (sh.which('git')) {
-            val = sh.exec('git config --get ' + prop, { silent: true }).output.trim();
+            val = sh.exec('git config --get ' + query, { silent: true }).output.trim();
             this.constructor.gitConfigCache[key] = val;
         }
 
