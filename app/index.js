@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path');
+var sh = require('shelljs');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 // var chalk = require('chalk');
@@ -8,6 +9,8 @@ var yosay = require('yosay');
 var YuiGenerator = yeoman.generators.Base.extend({
     init: function () {
         this.pkg = require('../package.json');
+
+        this._gitConfigCache = {};
 
         this.on('end', function () {
             if (!this.options['skip-install']) {
@@ -29,6 +32,24 @@ var YuiGenerator = yeoman.generators.Base.extend({
         }
 
         return author;
+    },
+
+    // mostly a copy of the getters in
+    // https://github.com/yeoman/generator/blob/master/lib/actions/user.js
+    _defaultGitConfig: function (prop) {
+        var key = process.cwd() + ':' + prop,
+            val = this._gitConfigCache[key];
+
+        if (val) {
+            return val;
+        }
+
+        if (sh.which('git')) {
+            val = sh.exec('git config --get ' + prop, { silent: true }).output.trim();
+            this._gitConfigCache[key] = val;
+        }
+
+        return val;
     },
 
     askFor: function () {
@@ -63,7 +84,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
             {
                 name: 'projectRepository',
                 message: 'Project repository URL',
-                default: ''
+                default: this._defaultGitConfig.bind(this, 'remote.origin.url')
             },
             {
                 name: 'projectVersion',
