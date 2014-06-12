@@ -4,14 +4,14 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 
 describe('yui generator', function () {
-    var TMP_DIR = path.join(__dirname, 'temp');
+    var OUT_DIR = path.join(__dirname, 'output');
     var APP_DIR = path.join(__dirname, '../app');
 
     describe('yui:app', function () {
         before(function (done) {
             yeoman.test
                 .run(APP_DIR)
-                .inDir(TMP_DIR)
+                .inDir(OUT_DIR)
                 .onEnd(done);
         });
 
