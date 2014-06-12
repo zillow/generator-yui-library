@@ -1,6 +1,5 @@
 'use strict';
 var path = require('path');
-var sh = require('shelljs');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 // var chalk = require('chalk');
@@ -42,8 +41,8 @@ var YuiGenerator = yeoman.generators.Base.extend({
             return val;
         }
 
-        if (sh.which('git')) {
-            val = sh.exec('git config --get ' + query, { silent: true }).output.trim();
+        if (this.shell.which('git')) {
+            val = this.shell.exec('git config --get ' + query, { silent: true }).output.trim();
             this.constructor.gitConfigCache[key] = val;
         }
 
