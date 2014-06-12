@@ -134,22 +134,10 @@ var YuiGenerator = yeoman.generators.Base.extend({
         }.bind(this));
     },
 
-    app: function () {
+    files: function () {
         this.mkdir('src');
 
-        this.template('_package.json', 'package.json');
-        this.template('_bower.json', 'bower.json');
-
-        this.template('_BUILD.md', 'BUILD.md');
-        this.template('_README.md', 'README.md');
-        this.template('_Gruntfile.js', 'Gruntfile.js');
-    },
-
-    projectfiles: function () {
-        this.copy('editorconfig', '.editorconfig');
-        this.copy('gitignore', '.gitignore');
-        this.copy('jshintrc', '.jshintrc');
-        this.copy('yeti.json', '.yeti.json');
+        this.directory('.');
     }
 }, {
     /**
