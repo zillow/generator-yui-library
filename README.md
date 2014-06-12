@@ -1,4 +1,4 @@
-# generator-yui [![Build Status](https://secure.travis-ci.org/evocateur/generator-yui.png?branch=master)](https://travis-ci.org/evocateur/generator-yui)
+# generator-yui [![Build Status](https://travis-ci.org/evocateur/generator-yui.svg?branch=master)](https://travis-ci.org/evocateur/generator-yui)
 
 > [Yeoman](http://yeoman.io) generator
 
