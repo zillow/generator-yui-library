@@ -1,5 +1,4 @@
 'use strict';
-var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 
@@ -58,7 +57,8 @@ var YuiGenerator = yeoman.generators.Base.extend({
             {
                 name: 'projectName',
                 message: 'Project name',
-                default: path.basename(process.cwd())
+                default: this._.slugify(this.appname),
+                filter: this._.slugify
             },
             {
                 name: 'projectTitle',
