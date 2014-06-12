@@ -49,6 +49,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
 
     askFor: function () {
         var done = this.async();
+        var humanTitle = this._.compose(this._.titleize, this._.humanize);
 
         // Have Yeoman greet the user.
         this.log(yosay('Welcome to the marvelous YUI generator!'));
@@ -62,10 +63,11 @@ var YuiGenerator = yeoman.generators.Base.extend({
             },
             {
                 name: 'projectTitle',
-                message: 'Project title (if different)',
-                default: function (props) {
-                    return props.projectName;
-                }
+                message: 'Project title',
+                default: function (answers) {
+                    return humanTitle(answers.projectName);
+                },
+                filter: humanTitle
             },
             {
                 name: 'projectAuthor',
