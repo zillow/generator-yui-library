@@ -1,0 +1,11 @@
+{
+    "name"       : "<%= moduleName %>",
+    "displayName": "<%= moduleTitle %>",
+    "description": "<%= moduleDescription %>",
+    "author"     : [ "<%= moduleAuthor %>" ],
+    "use"        : [ "<%= moduleName %>" ],
+
+    "tags": [],
+
+    "examples": []
+}

@@ -1,0 +1,4 @@
+<%= moduleTitle %>
+========
+
+<%= moduleDescription %>

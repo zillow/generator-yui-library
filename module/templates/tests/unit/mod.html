@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%= moduleTitle %> Tests</title>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+
+<script src="/bower_components/yui/build/yui/yui.js"></script>
+<script src="./assets/<%= moduleName %>-test.js"></script>
+<script>
+YUI({
+    coverage: ['<%= moduleName %>'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', '<%= moduleName %>-test', function (Y) {
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('<%= moduleTitle %>');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>
