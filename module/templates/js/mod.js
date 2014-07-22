@@ -1,1 +1,1 @@
-/* CODE */
+<%= moduleBody %>

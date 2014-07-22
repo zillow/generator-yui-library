@@ -1,5 +1,6 @@
 /*global describe, before, it */
 'use strict';
+var fs = require('fs');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
@@ -115,4 +116,51 @@ describe('yui generator', function () {
             ]);
         });
     });
+
+    describe('imported module', function () {
+        before(function (done) {
+            yeoman.test
+                .run(MOD_DIR)
+                .inDir(OUT_DIR)
+                .withOptions({
+                    'import': path.join(__dirname, 'fixtures/module/existing.js')
+                })
+                .withPrompt({
+                    moduleName: 'existing',
+                    moduleTitle: 'Existing',
+                    moduleType: 'js'
+                })
+                .onEnd(done);
+        });
+
+        it('creates expected files', function () {
+            yeoman.assert.file([
+                'build.json',
+                'docs/component.json',
+                'docs/index.mustache',
+                'HISTORY.md',
+                'js/existing.js',
+                'meta/existing.json',
+                'README.md',
+                'tests/unit/assets/existing-test.js',
+                'tests/unit/existing.html'
+            ]);
+        });
+
+        it('matches expected JS output', function () {
+            var existingCode = fs.readFileSync(path.join(__dirname, 'fixtures/module/existing-code.js'));
+            yeoman.assert.fileContent('js/existing.js', new RegExp(escapeRegExp(existingCode), 'm'));
+        });
+
+        it('matches expected JSON output', function () {
+            var existingMeta = fs.readFileSync(path.join(__dirname, 'fixtures/module/existing-meta.json'));
+            yeoman.assert.fileContent('meta/existing.json', new RegExp(escapeRegExp(existingMeta), 'm'));
+        });
+    });
 });
+
+// escape a string for use in RegExp constructor
+// http://stackoverflow.com/a/3561711/5707
+function escapeRegExp(s) {
+    return String(s).replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}

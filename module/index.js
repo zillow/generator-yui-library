@@ -3,6 +3,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 
+var recastYUI = require('recast-yui');
 
 var ModuleGenerator = yeoman.generators.Base.extend({
     constructor: function () {
@@ -13,14 +14,33 @@ var ModuleGenerator = yeoman.generators.Base.extend({
             required: false // unlike NamedBase
         });
 
-        if (this.name) {
-            this.moduleName = this._.slugify(this._.humanize(this.name));
-        }
+        this.option('import', {
+            desc: 'Path to existing file for import into shifter pattern.',
+            type: path,
+            required: false
+        });
 
         this._prompts = [];
     },
 
     init: function () {
+        var done = this.async();
+        var options = this.options;
+
+        if (options['import']) {
+            return recastYUI(options['import'], this, done);
+        } else {
+            this.moduleBody = '/* CODE */';
+        }
+
+        if (this.name) {
+            this.moduleName = this._.slugify(this._.humanize(this.name));
+        }
+
+        done();
+    },
+
+    configure: function () {
         var prompts = this._prompts;
         var humanTitle = this._.compose(this._.titleize, this._.humanize);
         var initModuleNamed = this.moduleName;
@@ -90,7 +110,7 @@ var ModuleGenerator = yeoman.generators.Base.extend({
             modBuilds = build.builds[moduleName] = {},
 
             meta = {},
-            modMeta = meta[moduleName] = {};
+            modMeta = meta[moduleName] = this.moduleMeta && JSON.parse(this.moduleMeta) || {};
 
         this.destinationRoot(path.join('src', moduleName));
 
@@ -124,7 +144,7 @@ var ModuleGenerator = yeoman.generators.Base.extend({
                 this.template('assets/mod/skins/sam/mod-skin.css',    'assets/<%= moduleName %>/skins/sam/<%= moduleName %>-skin.css');
                 this.template('assets/mod/skins/night/mod-skin.css',  'assets/<%= moduleName %>/skins/night/<%= moduleName %>-skin.css');
             } else {
-                modMeta.requires = ['yui-base'];
+                modMeta.requires = modMeta.requires && modMeta.requires.length ? modMeta.requires : ['yui-base'];
             }
         }
 

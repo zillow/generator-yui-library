@@ -1,0 +1,7 @@
+{
+    "existing": {
+        "requires": [
+            "base-core"
+        ]
+    }
+}

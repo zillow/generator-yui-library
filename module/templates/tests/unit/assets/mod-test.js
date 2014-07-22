@@ -12,4 +12,4 @@ YUI.add('<%= moduleName %>-test', function (Y) {
 
     Y.Test.Runner.add(suite);
 
-}, 'TEST', { requires: [ 'test' ] });
+}, 'TEST', { requires: ['test', '<%= moduleName %>'] });
