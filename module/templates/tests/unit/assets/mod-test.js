@@ -1,4 +1,5 @@
 YUI.add('<%= moduleName %>-test', function (Y) {
+    'use strict';
 
     var suite = new Y.Test.Suite('<%= moduleTitle %>');
 

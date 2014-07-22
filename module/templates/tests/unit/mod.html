@@ -14,6 +14,7 @@ YUI({
     coverage: ['<%= moduleName %>'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', '<%= moduleName %>-test', function (Y) {
+    'use strict';
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('<%= moduleTitle %>');
