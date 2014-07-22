@@ -15,6 +15,7 @@ var ModuleGenerator = yeoman.generators.Base.extend({
         });
 
         this.option('file', {
+            alias: 'f',
             desc: 'Path to existing file to import into shifter pattern.',
             type: path,
             required: false
