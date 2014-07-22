@@ -14,8 +14,8 @@ var ModuleGenerator = yeoman.generators.Base.extend({
             required: false // unlike NamedBase
         });
 
-        this.option('import', {
-            desc: 'Path to existing file for import into shifter pattern.',
+        this.option('file', {
+            desc: 'Path to existing file to import into shifter pattern.',
             type: path,
             required: false
         });
@@ -27,8 +27,8 @@ var ModuleGenerator = yeoman.generators.Base.extend({
         var done = this.async();
         var options = this.options;
 
-        if (options['import']) {
-            return recastYUI(options['import'], this, done);
+        if (options.file) {
+            return recastYUI(options.file, this, done);
         } else {
             this.moduleBody = '/* CODE */';
         }

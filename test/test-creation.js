@@ -123,7 +123,7 @@ describe('yui generator', function () {
                 .run(MOD_DIR)
                 .inDir(OUT_DIR)
                 .withOptions({
-                    'import': path.join(__dirname, 'fixtures/module/existing.js')
+                    'file': path.join(__dirname, 'fixtures/module/existing.js')
                 })
                 .withPrompt({
                     moduleName: 'existing',
