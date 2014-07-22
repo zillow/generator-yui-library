@@ -14,6 +14,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "pretest": "jshint .",
     "test": "mocha"
   },
   "files": [
@@ -29,6 +30,7 @@
     "yosay": "^0.1.0"
   },
   "devDependencies": {
+    "jshint": "^2.5.2",
     "mocha": "*"
   },
   "peerDependencies": {
