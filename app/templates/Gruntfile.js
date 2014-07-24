@@ -86,7 +86,7 @@ module.exports = function (grunt) {
             }
         }<% } %><% if (cleanBuild) { %>,
         clean: {
-            files: ['build']
+            files: ['<%= buildDirectory %>']
         }<% } %>
     });
 

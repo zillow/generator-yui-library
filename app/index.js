@@ -90,6 +90,11 @@ var YuiGenerator = yeoman.generators.Base.extend({
                 default: '0.0.0'
             },
             {
+                name: 'buildDirectory',
+                message: 'Build directory',
+                default: 'build'
+            },
+            {
                 type: 'confirm',
                 name: 'cleanBuild',
                 message: 'Version build directory?',
@@ -125,6 +130,7 @@ var YuiGenerator = yeoman.generators.Base.extend({
             this.projectRepository = props.projectRepository;
             this.projectVersion = props.projectVersion;
 
+            this.buildDirectory = props.buildDirectory;
             this.cleanBuild = props.cleanBuild;
             this.yuiRelease = props.yuiRelease;
             this.copyrightOwner = props.copyrightOwner;
