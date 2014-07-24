@@ -30,6 +30,15 @@ describe('yui generator', function () {
                 '.yeti.json'
             ]);
         });
+
+        it('properly templatizes Gruntfile.js', function () {
+            // quickly assert that it was templatized
+            yeoman.assert.noFileContent('Gruntfile.js', (/<%%=/));
+
+            // further comparison of templatized defaults
+            var defaultGruntfile = fs.readFileSync(path.join(__dirname, 'fixtures/project/gruntfile-default.js'));
+            yeoman.assert.fileContent('Gruntfile.js', new RegExp(escapeRegExp(defaultGruntfile), 'm'));
+        });
     });
 
     describe('css module', function () {
