@@ -4,40 +4,42 @@ var fs = require('fs');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 
-describe('yui generator', function () {
+describe('yui-library generator', function () {
     var OUT_DIR = path.join(__dirname, 'output');
     var APP_DIR = path.join(__dirname, '../app');
     var MOD_DIR = path.join(__dirname, '../module');
 
     describe('project', function () {
-        before(function (done) {
-            yeoman.test
-                .run(APP_DIR)
-                .inDir(OUT_DIR)
-                .on('end', done);
-        });
+        describe('defaults', function () {
+            before(function (done) {
+                yeoman.test
+                    .run(APP_DIR)
+                    .inDir(OUT_DIR)
+                    .on('end', done);
+            });
 
-        it('creates expected files', function () {
-            yeoman.assert.file([
-                'BUILD.md',
-                'README.md',
-                'Gruntfile.js',
-                'bower.json',
-                'package.json',
-                '.editorconfig',
-                '.gitignore',
-                '.jshintrc',
-                '.yeti.json'
-            ]);
-        });
+            it('creates expected files', function () {
+                yeoman.assert.file([
+                    'BUILD.md',
+                    'README.md',
+                    'Gruntfile.js',
+                    'bower.json',
+                    'package.json',
+                    '.editorconfig',
+                    '.gitignore',
+                    '.jshintrc',
+                    '.yeti.json'
+                ]);
+            });
 
-        it('properly templatizes Gruntfile.js', function () {
-            // quickly assert that it was templatized
-            yeoman.assert.noFileContent('Gruntfile.js', (/<%%=/));
+            it('properly templatizes Gruntfile.js', function () {
+                // quickly assert that it was templatized
+                yeoman.assert.noFileContent('Gruntfile.js', (/<%%=/));
 
-            // further comparison of templatized defaults
-            var defaultGruntfile = fs.readFileSync(path.join(__dirname, 'fixtures/project/gruntfile-default.js'));
-            yeoman.assert.fileContent('Gruntfile.js', new RegExp(escapeRegExp(defaultGruntfile), 'm'));
+                // further comparison of templatized defaults
+                var defaultGruntfile = fs.readFileSync(path.join(__dirname, 'fixtures/project/gruntfile-default.js'));
+                yeoman.assert.fileContent('Gruntfile.js', new RegExp(escapeRegExp(defaultGruntfile), 'm'));
+            });
         });
     });
 
