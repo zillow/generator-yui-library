@@ -33,10 +33,10 @@ describe('yui-library generator', function () {
             });
 
             it('properly templatizes Gruntfile.js', function () {
-                // quickly assert that it was templatized
                 yeoman.assert.noFileContent('Gruntfile.js', (/<%%=/));
+            });
 
-                // further comparison of templatized defaults
+            it('matches expected Gruntfile.js output', function () {
                 var defaultGruntfile = fs.readFileSync(path.join(__dirname, 'fixtures/project/gruntfile-default.js'));
                 yeoman.assert.fileContent('Gruntfile.js', new RegExp(escapeRegExp(defaultGruntfile), 'm'));
             });
