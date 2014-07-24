@@ -14,7 +14,7 @@ describe('yui generator', function () {
             yeoman.test
                 .run(APP_DIR)
                 .inDir(OUT_DIR)
-                .onEnd(done);
+                .on('end', done);
         });
 
         it('creates expected files', function () {
@@ -37,12 +37,12 @@ describe('yui generator', function () {
             yeoman.test
                 .run(MOD_DIR)
                 .inDir(OUT_DIR)
-                .withPrompt({
+                .withPrompts({
                     moduleName: 'foo',
                     moduleTitle: 'Foo',
                     moduleType: 'css'
                 })
-                .onEnd(done);
+                .on('end', done);
         });
 
         it('creates expected files', function () {
@@ -63,12 +63,12 @@ describe('yui generator', function () {
             yeoman.test
                 .run(MOD_DIR)
                 .inDir(OUT_DIR)
-                .withPrompt({
+                .withPrompts({
                     moduleName: 'bar',
                     moduleTitle: 'Bar',
                     moduleType: 'js'
                 })
-                .onEnd(done);
+                .on('end', done);
         });
 
         it('creates expected files', function () {
@@ -91,12 +91,12 @@ describe('yui generator', function () {
             yeoman.test
                 .run(MOD_DIR)
                 .inDir(OUT_DIR)
-                .withPrompt({
+                .withPrompts({
                     moduleName: 'qux',
                     moduleTitle: 'Qux',
                     moduleType: 'widget'
                 })
-                .onEnd(done);
+                .on('end', done);
         });
 
         it('creates expected files', function () {
@@ -125,12 +125,12 @@ describe('yui generator', function () {
                 .withOptions({
                     'file': path.join(__dirname, 'fixtures/module/existing.js')
                 })
-                .withPrompt({
+                .withPrompts({
                     moduleName: 'existing',
                     moduleTitle: 'Existing',
                     moduleType: 'js'
                 })
-                .onEnd(done);
+                .on('end', done);
         });
 
         it('creates expected files', function () {
