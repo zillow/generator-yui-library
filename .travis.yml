@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '0.10'
+  - '0.11'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-yui' ]; then cd .. && eval "mv $currentfolder generator-yui" && cd generator-yui; fi
+  - if [ "$currentfolder" != 'generator-yui-library' ]; then cd .. && eval "mv $currentfolder generator-yui-library" && cd generator-yui-library; fi

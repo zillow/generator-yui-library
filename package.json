@@ -1,10 +1,10 @@
 {
-  "name": "generator-yui",
+  "name": "generator-yui-library",
   "version": "0.0.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "evocateur/generator-yui",
+  "repository": "evocateur/generator-yui-library",
   "author": {
     "name": "Daniel Stockman",
     "email": "daniel.stockman@gmail.com",
