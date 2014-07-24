@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "recast-yui": "^0.1.5",
-    "yeoman-generator": "^0.17.0",
+    "yeoman-generator": "^0.17.1",
     "yosay": "^0.1.0"
   },
   "devDependencies": {
