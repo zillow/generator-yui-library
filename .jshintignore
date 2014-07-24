@@ -1,3 +1,4 @@
 node_modules
 app/templates/Gruntfile.js
 module/templates/js/mod.js
+test/output
