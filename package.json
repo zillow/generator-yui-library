@@ -15,7 +15,8 @@
   },
   "scripts": {
     "pretest": "jshint .",
-    "test": "mocha --bail"
+    "test": "istanbul test --print both _mocha -- --bail",
+    "posttest": "istanbul check-coverage --statements 90 --branches 70 --functions 70 --lines 90"
   },
   "files": [
     "app",
@@ -31,6 +32,7 @@
     "yosay": "^0.1.0"
   },
   "devDependencies": {
+    "istanbul": "^0.3.0",
     "jshint": "^2.5.2",
     "mocha": "^1.21.3"
   },

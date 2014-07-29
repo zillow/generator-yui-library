@@ -5,3 +5,5 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-yui-library' ]; then cd .. && eval "mv $currentfolder generator-yui-library" && cd generator-yui-library; fi
+env:
+  - npm_config_coverage=1
