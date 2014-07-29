@@ -15,8 +15,7 @@
   },
   "scripts": {
     "pretest": "jshint .",
-    "test": "istanbul test --print both _mocha -- --bail",
-    "posttest": "istanbul check-coverage --statements 90 --branches 70 --functions 70 --lines 90"
+    "test": "istanbul test --print both _mocha -- --bail"
   },
   "files": [
     "app",
