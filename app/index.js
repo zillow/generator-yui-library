@@ -15,8 +15,8 @@ var YuiGenerator = yeoman.generators.Base.extend({
     },
 
     _defaultAuthor: function () {
-        var name  = this.user.git.name,
-            email = this.user.git.email,
+        var name  = this.user.git.name(),
+            email = this.user.git.email(),
             author = 'Rockstar Developer <rockstar@mycompany.com>';
 
         if (name) {
