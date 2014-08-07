@@ -1,7 +1,7 @@
 YUI.add('<%= moduleName %>-test', function (Y) {
     'use strict';
 
-    var suite = new Y.Test.Suite('<%= moduleTitle %>');
+    var suite = new Y.Test.Suite('<%= moduleName %>');
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',

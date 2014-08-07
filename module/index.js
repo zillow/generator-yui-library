@@ -21,6 +21,13 @@ var ModuleGenerator = yeoman.generators.Base.extend({
             required: false
         });
 
+        this.option('doc', {
+            desc: 'Generate doc files based on information provided by user input',
+            type: Boolean,
+            defaults: true,
+            required: false
+        });
+
         this._prompts = [];
     },
 
@@ -28,7 +35,17 @@ var ModuleGenerator = yeoman.generators.Base.extend({
         var done = this.async();
         var options = this.options;
 
+        this.optFile = options.file;
+        this.optDoc = options.doc;
+
         if (options.file) {
+            // set moduleType
+            if (path.extname(options.file) === '.css') {
+                this.moduleType = 'CSS';
+            } else if (path.extname(options.file) === '.js') {
+                this.moduleType = 'JS';
+            }
+
             return recastYUI(options.file, this, done);
         } else {
             this.moduleBody = '/* CODE */';
@@ -46,45 +63,55 @@ var ModuleGenerator = yeoman.generators.Base.extend({
         var humanTitle = this._.compose(this._.titleize, this._.humanize);
         var initModuleNamed = this.moduleName;
 
-        prompts.push({
-            name: 'moduleName',
-            message: 'Module name',
-            filter: this._.slugify,
-            validate: function (input) {
-                return !!input;
-            },
-            when: function () {
-                return !initModuleNamed;
-            }
-        });
-        prompts.push({
-            name: 'moduleTitle',
-            message: 'Module title',
-            default: function (answers) {
-                return humanTitle(answers.moduleName || initModuleNamed);
-            },
-            filter: humanTitle
-        });
-        prompts.push({
-            name: 'moduleType',
-            message: 'Module type',
-            type: 'list',
-            choices: ['JS', 'CSS', 'Widget'],
-            default: 0,
-            filter: function (val) {
-                return String(val).toLowerCase();
-            }
-        });
-        prompts.push({
-            name: 'moduleAuthor',
-            message: 'Module author',
-            default: this.user.git.name
-        });
-        prompts.push({
-            name: 'moduleDescription',
-            message: 'Module description',
-            default: 'The best YUI module ever.'
-        });
+        if (!this.optFile) {
+            prompts.push({
+                name: 'moduleTitle',
+                message: 'Module title',
+                default: function (answers) {
+                    return humanTitle(answers.moduleName || initModuleNamed);
+                },
+                filter: humanTitle
+            });
+        } else {
+            this.moduleTitle = humanTitle(initModuleNamed);
+        }
+
+        if (this.optDoc) {
+            prompts.push({
+                name: 'moduleName',
+                message: 'Module name',
+                filter: this._.slugify,
+                validate: function (input) {
+                    return !!input;
+                },
+                when: function () {
+                    return !initModuleNamed;
+                }
+            });
+            prompts.push({
+                name: 'moduleAuthor',
+                message: 'Module author',
+                default: this.user.git.name
+            });
+            prompts.push({
+                name: 'moduleDescription',
+                message: 'Module description',
+                default: 'The best YUI module ever.'
+            });
+        }
+
+        if (!this.moduleType) {
+            prompts.push({
+                name: 'moduleType',
+                message: 'Module type',
+                type: 'list',
+                choices: ['JS', 'CSS', 'Widget'],
+                default: 0,
+                filter: function (val) {
+                    return String(val).toLowerCase();
+                }
+            });
+        }
     },
 
     ask: function () {
@@ -115,10 +142,12 @@ var ModuleGenerator = yeoman.generators.Base.extend({
 
         this.destinationRoot(path.join('src', moduleName));
 
-        this.copy('HISTORY.md');
-        this.copy('README.md');
-        this.copy('docs/component.json');
-        this.copy('docs/index.mustache');
+        if (this.optDoc) {
+            this.copy('HISTORY.md');
+            this.copy('README.md');
+            this.copy('docs/component.json');
+            this.copy('docs/index.mustache');
+        }
 
         if (this.moduleType === 'css') {
             modMeta.type = 'css';
