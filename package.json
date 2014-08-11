@@ -4,12 +4,11 @@
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "evocateur/generator-yui-library",
-  "author": {
-    "name": "Daniel Stockman",
-    "email": "daniel.stockman@gmail.com",
-    "url": "https://github.com/evocateur"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zillow/generator-yui-library"
   },
+  "author": "Daniel Stockman <daniel.stockman@gmail.com> (https://github.com/evocateur)",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -37,5 +36,12 @@
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/zillow/generator-yui-library/issues"
+  },
+  "homepage": "https://github.com/zillow/generator-yui-library",
+  "directories": {
+    "test": "test"
   }
 }
